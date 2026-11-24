@@ -1,0 +1,22 @@
+[Unit]
+Description=VectorKeith on-chain asset service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vectorkeith
+Group=vectorkeith
+WorkingDirectory=/opt/vectorkeith
+Environment=NODE_ENV=production
+ExecStart=/opt/vectorkeith/node_modules/.bin/tsx server/index.ts
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/vectorkeith/data
+
+[Install]
+WantedBy=multi-user.target
